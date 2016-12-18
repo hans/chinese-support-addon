@@ -11,6 +11,7 @@ from config import chinese_support_config
 import bopomofo as bopomofo_module
 import google_tts
 import baidu_tts
+import line_tts
 from microsofttranslator import Translator as MSTranslator
 import dictdb
 
@@ -449,6 +450,11 @@ def sound(text, source=None):
     elif "Google TTS Cantonese" == source:
         try:
             return "[sound:"+google_tts.get_word_from_google(text, 'zh-YUE')+"]"
+        except:
+            return ""
+    elif "LINE" == source:
+        try:
+            return "[sound:" + line_tts.get_word_from_line(text, "zh") + "]"
         except:
             return ""
     else:
